@@ -23,4 +23,4 @@ Mr.Nattaphon Suparsri
 7. พิมพ์ php artisan migrate
 8. พิมพ์ php artisan db:seed
 9. พิมพ์ php artisan serve
-10. เข้าเว็บ http://127.0.0.1:8000
+10. เข้าเว็บ http://localhost:8000
