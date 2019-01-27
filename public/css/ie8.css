@@ -1,0 +1,17 @@
+.header {
+    background-image:  url(../img/bgfill.jpg)\0/;
+    background-size: 100%\0/;
+}
+
+.cloud1,.cloud2,.cloud3,.cloud4{
+    display: none;
+}
+
+.pricing {
+    background: transparent;
+    background-color: #19589F;
+}
+
+.contact {
+    background-image: url(../img/bg-contact.jpg)\0/;
+}

@@ -1,0 +1,86 @@
+/* the container */
+.desicarousel {
+	position:relative;
+}
+.desicarousel img {
+	max-width:none;
+	max-height:none;
+}
+.desicarousel_list {
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:none;
+}
+
+.desicarousel .contentHolder {
+	position:relative;
+	overflow:hidden;
+}
+
+/***charming SKIN***/
+
+.desicarousel.charming .contentHolderUnit {
+	position:absolute;
+	/*float:left;
+	display:block;*/
+	width:300px;
+	height:439px;
+	overflow:hidden;
+	cursor: pointer;
+}
+
+.desicarousel.charming .elementTitle {
+	position:absolute;
+	left:0;
+	top:40px;
+	width:100%;
+	text-align:center;
+	font: bold 22px/30px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	color:#FFFFFF;
+	text-transform:capitalize;
+}
+
+.desicarousel.charming .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:101;
+	width:100%;
+}
+
+.desicarousel.charming .leftNav {
+	position:absolute;
+	width: 0;
+}
+.desicarousel.charming .rightNav {
+	position:absolute;
+	width: 0;
+}
+.desicarousel.charming .bottomNav {
+	position:absolute;
+	height:35px;
+	width:0;
+	padding-left:9px;
+	z-index:140;
+}
+
+.desicarousel.charming .bottomNavLeft {
+	display:none;
+	position:absolute;
+	z-index:140;
+}
+.desicarousel.charming .bottomNavRight {
+	display:none;
+	position:absolute;
+	z-index:140;
+}
+
+.desicarousel.charming .bottomOverThumb img {
+	border:4px solid #22032e;
+}
+
+.hideElement {
+	display:none;
+}
+
