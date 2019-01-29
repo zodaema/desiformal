@@ -112,8 +112,48 @@
                         </div>
                         <div class="col-md-4">
                             <h4>ตารางคิวงาน</h4>
-{{--                            {{ showqueue(); }}--}}
+                            @for($i=0;$i<8;$i++)
+                            @php
+                                $month = date('m',strtotime("$i month"));
+                                $year = date('Y',strtotime("$i month"));
+                                $porsor = $year+543;
+                                $month_name = array('01'=>'มกราคม','02'=>'กุมภาพันธ์','03'=>'มีนาคม','04'=>'เมษายน','05'=>'พฤษภาคม','06'=>'มิถุนายน','07'=>'กรกฎาคม','08'=>'สิงหาคม','09'=>'กันยายน','10'=>'ตุลาคม','11'=>'พฤศจิกายน','12'=>'ธันวาคม');
+                                $queue = App\Http\Controllers\QueueController::searchQueue($month,$year);
+                                $percent = $queue['queue']*50;
+                            @endphp
+
+                                @if(empty($queue))
+                                    <div class="row">
+                                        <div class="col-md-5 text-right" style="padding-left:3px;padding-right:3px;">{{ $month_name[$month].' '.$porsor }}</div>
+                                        <div class="col-md-7" style="padding-left:3px;padding-right:3px;">
+                                            <div class="progress" style="margin-bottom:5px;">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                                     aria-valuemin="0" aria-valuemax="100" style="width:0%;position:relative;">
+                                                </div>
+                                                <div style="position:absolute;left:0;width:100%;text-align:center;z-index:2;color:#727272;font-size:12px"><span>คิวงานว่าง</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                <div class="row">
+                                    <div class="col-md-5 text-right" style="padding-left:3px;padding-right:3px;">{{ $month_name[$month].' '.$porsor }}</div>
+                                    <div class="col-md-7" style="padding-left:3px;padding-right:3px;">
+                                        <div class="progress" style="margin-bottom:5px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="'{{$percent}}"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{$percent}}%">
+                                                @if ($queue['queue'] == 2)
+                                                คิวงานเต็ม
+                                                @elseif($queue['queue'] == 1)
+                                                รับได้อีก 1 คิว
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            @endfor
                         </div>
+
                         <div class="col-md-4">
                             <h4>ร่วมติดตามในเฟสบุค</h4>
                             <div class="fb-page"

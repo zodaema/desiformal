@@ -23,6 +23,8 @@ Route::get('/showPortfolio/{page}', 'PortfolioController@showPortfolio');
 Route::get('/portfolioDetail/{id}', 'PortfolioController@portfolioDetail');
 Route::get('/totalPage', 'PortfolioController@totalPage')->name('totalPage');
 
+Route::get('/searchQueue/{month}/{year}', 'QueueController@searchQueue')->name('searchQueue');
+
 Route::prefix('admincp')->group(function(){
     Auth::routes(['register' => false]);
 });

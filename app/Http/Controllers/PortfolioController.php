@@ -9,7 +9,7 @@ use App\Model\Admincp\Portfolio;
 
 class PortfolioController extends Controller
 {
-    const item_per_page = 4;
+    const item_per_page = 6;
 
     public static function showPortfolio($page_number){
       $page_number = filter_var($page_number, FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
