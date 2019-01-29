@@ -19,40 +19,44 @@ class DatabaseSeeder extends Seeder
         $user->password = Hash::make('123456');
         $user->save();
 
-        $portfolio = new \App\Model\Admincp\Portfolio();
-        $portfolio->name = 'ผลงานที่1';
-        $portfolio->client = 'ลูกค้า1';
-        $portfolio->link = 'ลิงค์1';
-        $portfolio->smallpic = 'Fls8LXgAqq.png';
-        $portfolio->fullpic = 'sMs2JUIvrV.png';
-        $portfolio->save();
+        \App\Model\Admincp\Portfolio::create([
+            'name' => 'ผลงานที่1',
+            'client' => 'ลูกค้า1',
+            'link' => 'ลิงค์1',
+            'smallpic' => 'Fls8LXgAqq.png',
+            'fullpic' => 'sMs2JUIvrV.png'
+        ]);
 
-        $portfolio->name = 'ผลงานที่2';
-        $portfolio->client = 'ลูกค้า2';
-        $portfolio->link = 'ลิงค์2';
-        $portfolio->smallpic = '7Ug0bsmxTV.jpg';
-        $portfolio->fullpic = '934XPpaHqD.jpg';
-        $portfolio->save();
+        \App\Model\Admincp\Portfolio::create([
+            'name' => 'ผลงานที่2',
+            'client' => 'ลูกค้า2',
+            'link' => 'ลิงค์2',
+            'smallpic' => '7Ug0bsmxTV.jpg',
+            'fullpic' => '934XPpaHqD.jpg'
+        ]);
 
-        $portfolio->name = 'ผลงานที่3';
-        $portfolio->client = 'ลูกค้า3';
-        $portfolio->link = 'ลิงค์3';
-        $portfolio->smallpic = 'twKIn978jM.jpeg';
-        $portfolio->fullpic = 'RGbEM8wS8v.jpeg';
-        $portfolio->save();
+        \App\Model\Admincp\Portfolio::create([
+            'name' => 'ผลงานที่3',
+            'client' => 'ลูกค้า3',
+            'link' => 'ลิงค์3',
+            'smallpic' => 'twKIn978jM.jpeg',
+            'fullpic' => 'RGbEM8wS8v.jpeg'
+        ]);
 
-        $portfolio->name = 'ผลงานที่4';
-        $portfolio->client = 'ลูกค้า4';
-        $portfolio->link = 'ลิงค์4';
-        $portfolio->smallpic = 'sxhn2lskXG.jpeg';
-        $portfolio->fullpic = 'qP3kUR023j.jpeg';
-        $portfolio->save();
+        \App\Model\Admincp\Portfolio::create([
+            'name' => 'ผลงานที่4',
+            'client' => 'ลูกค้า4',
+            'link' => 'ลิงค์4',
+            'smallpic' => 'sxhn2lskXG.jpeg',
+            'fullpic' => 'qP3kUR023j.jpeg'
+        ]);
 
-        $portfolio->name = 'ผลงานที่5';
-        $portfolio->client = 'ลูกค้า5';
-        $portfolio->link = 'ลิงค์5';
-        $portfolio->smallpic = 'brQ7HLPV74.png';
-        $portfolio->fullpic = 'U0KxqWoDZq.png';
-        $portfolio->save();
+        \App\Model\Admincp\Portfolio::create([
+            'name' => 'ผลงานที่5',
+            'client' => 'ลูกค้า5',
+            'link' => 'ลิงค์5',
+            'smallpic' => 'brQ7HLPV74.png',
+            'fullpic' => 'U0KxqWoDZq.png'
+        ]);
     }
 }
