@@ -33,5 +33,26 @@ class DatabaseSeeder extends Seeder
         $portfolio->smallpic = '7Ug0bsmxTV.jpg';
         $portfolio->fullpic = '934XPpaHqD.jpg';
         $portfolio->save();
+
+        $portfolio->name = 'ผลงานที่3';
+        $portfolio->client = 'ลูกค้า3';
+        $portfolio->link = 'ลิงค์3';
+        $portfolio->smallpic = 'twKIn978jM.jpeg';
+        $portfolio->fullpic = 'RGbEM8wS8v.jpeg';
+        $portfolio->save();
+
+        $portfolio->name = 'ผลงานที่4';
+        $portfolio->client = 'ลูกค้า4';
+        $portfolio->link = 'ลิงค์4';
+        $portfolio->smallpic = 'sxhn2lskXG.jpeg';
+        $portfolio->fullpic = 'qP3kUR023j.jpeg';
+        $portfolio->save();
+
+        $portfolio->name = 'ผลงานที่5';
+        $portfolio->client = 'ลูกค้า5';
+        $portfolio->link = 'ลิงค์5';
+        $portfolio->smallpic = 'brQ7HLPV74.png';
+        $portfolio->fullpic = 'U0KxqWoDZq.png';
+        $portfolio->save();
     }
 }
