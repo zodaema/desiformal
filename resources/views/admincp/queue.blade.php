@@ -26,12 +26,18 @@
             <h2 class="panel-title">จัดการคิวงาน</h2>
         </header>
         <div class="panel-body">
-            <div class="col-lg-6">
-                <form action="queue.php" method="get">
+            <div class="col-lg-3">
+                <form action="queue.php" method="get" class="form-inline" style="margin-bottom:2em;">
+                  <div class="form-group">
                     <label>จำนวนเดือน : </label>
-                    <input name="fetch" type="number" min="1" max="20" class="input-medium" value="6">
+                    <div class="input-group">
+                      <input name="fetch" type="number" min="1" max="20" class="form-control" value="6">
+                    </div>
                     <button type="submit" class="btn">แสดง</button>
+                  </div>
                 </form>
+            </div>
+            <div class="col-lg-9">
                 @php
                     use App\Http\Controllers\Admincp\QueueController;
                 @endphp

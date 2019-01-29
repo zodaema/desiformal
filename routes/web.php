@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', function () {
+    return redirect('/');
+});
+
 Route::prefix('admincp')->group(function(){
     Auth::routes(['register' => false]);
 });
@@ -38,4 +42,3 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('queue', 'Admincp\QueueController@index')->name('queue');
     });
 });
-

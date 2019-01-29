@@ -56,7 +56,6 @@
         <script src="{{ asset('admincp_plugin/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js') }}"></script>
-        <script src="{{ asset('admincp_plugin/js/datatable.input.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/pnotify/pnotify.custom.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/dropzone/dropzone.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/flot/jquery.flot.js') }}"></script>
@@ -123,7 +122,7 @@
                     <div id="userbox" class="userbox">
                         <a href="#" data-toggle="dropdown">
                             <figure class="profile-picture">
-                                <img src="{{ asset('admincp_plugin/assets/images/!logged-user.jpg') }}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{ asset('admincp_plugin/assets/images/!logged-user.jpg') }}" />
+                                <img src="{{ asset('admincp_plugin/assets/images/user.png') }}" alt="{{ Auth::user()->name }}" class="img-circle" data-lock-picture="{{ asset('admincp_plugin/assets/images/user.png') }}" />
                             </figure>
                             <div class="profile-info" data-lock-name="{{ Auth::user()->name }}" data-lock-email="{{ Auth::user()->email }}">
                                 <span class="name">
@@ -181,19 +180,6 @@
                                     </li>
                                     <li class="nav-parent">
                                         <a>
-                                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                                            <span>ระบบจัดการอีเมล์</span>
-                                        </a>
-                                        <ul class="nav nav-children">
-                                            <li>
-                                                <a href="?p=email_filter">
-                                                    จัดการตัวกรองอีเมล์
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-parent">
-                                        <a>
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                             <span>จัดการสมาชิก</span>
                                         </a>
@@ -209,12 +195,6 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <a href="?p=importexport">
-                                            <i class="fa fa-upload" aria-hidden="true"></i>
-                                            <span>Import & Export</span>
-                                        </a>
                                     </li>
                                 </ul>
                             </nav>
@@ -234,18 +214,6 @@
 
             </div>
         </section>
-
-        {{--<!-- Bootstrap Core JavaScript -->--}}
-        {{--<script src="{{ asset('admincp_plugin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>--}}
-
-        {{--<!-- Metis Menu Plugin JavaScript -->--}}
-        {{--<script src="{{ asset('admincp_plugin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>--}}
-
-        {{--<!-- Datatables Plugin JavaScript -->--}}
-        {{--<script src="{{ asset('admincp_plugin/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>--}}
-
-        {{--<!-- Custom Theme JavaScript -->--}}
-        {{--<script src="{{ asset('admincp_plugin/dist/js/sb-admin-2.js') }}"></script>--}}
 
     </body>
 

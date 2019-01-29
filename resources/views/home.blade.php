@@ -119,8 +119,73 @@
         <div class="bg-primary loading" style="width:100%;height:20px;"></div>
 
         <!-- Portfolio -->
-        <div class="loading-div"><img src="img/ajax-loader.gif" ></div>
-        <div id="portfolio-show"></div>
+        <section id="portfolio" class="portfolio bg-light-gray">
+                <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>ตัวอย่างผลงาน</h2>
+                        <h3>ตัวอย่างผลงานการออกแบบเว็บไซต์ที่ผ่านมา</h3>
+                    </div>
+                </div>
+                <div class="row">
+                  @php
+                    use App\Http\Controllers\PortfolioController;
+                    $portfolios = PortfolioController::showPortfolio();
+                  @endphp
+
+                  @if(count($portfolios) == 0)
+                    <div>ไม่มีข้อมูล</div>
+                  @else
+                    @foreach ($portfolios as $portfolio)
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        <a href="#" class="portfolio-link" data-toggle="modal" data-target="#PortfolioModal">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="{{ asset('img/portfolio/'.$portfolio->smallpic) }}" class="img-responsive" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4><b>{{ $portfolio->name }}</b></h4>
+                            <p class="text-muted">Website Design</p>
+                        </div>
+                    </div>
+                  @endforeach
+                @endif
+                </div>
+              <div align="center">
+
+              </div>
+            </section>
+
+            <div id="PortfolioModal" class="portfolio-modal modal fade" id="portfolioModal'.$row[id].'" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="modal-body">
+                                    <h2>'.$row[name].'</h2>
+                                    <center><img class="img-responsive img-centered" src="'.$dirpic.''.$row[fullpic].'" alt=""></center>
+                                    <ul class="list-inline">
+                                        <li>Date: '.$row[dates].'</li>
+                                        <li>Client: '.$row[client].'</li>
+                                        <li>Link : <a href="'.$row[link].'" target="_blank">'.$row[name].'</a></li>
+                                        <li>Category: Website Design</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-primary btn-lg btn3d" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <!-- Contact -->
         <section id="contact" class="contact">
