@@ -20,7 +20,8 @@ Route::get('/home', function () {
 });
 
 Route::get('/showPortfolio/{page}', 'PortfolioController@showPortfolio');
-Route::get('/portfolioDetail/{id}', 'PortfolioController@portfolioDetail')->name('portfolio.detail');
+Route::get('/portfolioDetail/{id}', 'PortfolioController@portfolioDetail');
+Route::get('/totalPage', 'PortfolioController@totalPage')->name('totalPage');
 
 Route::prefix('admincp')->group(function(){
     Auth::routes(['register' => false]);

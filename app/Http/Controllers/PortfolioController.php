@@ -27,8 +27,9 @@ class PortfolioController extends Controller
       return $portfolios->toJson();
     }
 
-    public static function pagination(){
+    public static function totalPage(){
       $portfolios = Portfolio::count();
       $total_pages = ceil($portfolios/PortfolioController::item_per_page);
+      return $total_pages;
     }
 }

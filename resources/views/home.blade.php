@@ -131,12 +131,19 @@
               <div class="row" id="append-portfolio"></div>
 
               <div align="center">
+                @php
+                  use App\Http\Controllers\PortfolioController
+                @endphp
+                <input id="current-page" type="hidden" value="1" />
+                <input id="max-page" type="hidden" value="{{ PortfolioController::totalPage() }}" />
                 <ul class="pagination">
-                  <li class="first"><a href="#" data-page="1" title="First"><i class="fa fa-angle-double-left"></i></a></li>
-                  <li><a href="#" data-page="'.$previous_link.'" title="Previous"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#" data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>
-                  <li><a href="#" data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>
-                  <li class="last"><a href="#" data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>
+                  <li class="first"><a href="#" data-page="first" title="First"><i class="fa fa-angle-double-left"></i></a></li>
+                  <li><a href="#" data-page="back" title="Previous"><i class="fa fa-angle-left"></i></a></li>
+                  @for($i=0;$i<PortfolioController::totalPage();$i++)
+                    <li><a href="#" data-page="{{ $i+1 }}" title="Page {{ $i+1 }}">{{ $i+1 }}</a></li>
+                  @endfor
+                  <li><a href="#" data-page="next" title="Next"><i class="fa fa-angle-right"></i></a></li>
+                  <li class="last"><a href="#" data-page="last" title="Last"><i class="fa fa-angle-double-right"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -159,7 +166,7 @@
                                   <ul class="list-inline">
                                       <li>Date: <span id='date'></span></li>
                                       <li>Client: <span id='client'></span></li>
-                                      <li>Link : <a href="'.$row[link].'" target="_blank"><span id='name'></span></a></li>
+                                      <li>Link : <a id="link" href="" target="_blank"><span id='name'></span></a></li>
                                       <li>Category: Website Design</li>
                                   </ul>
                                   <button type="button" class="btn btn-primary btn-lg btn3d" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>

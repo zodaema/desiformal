@@ -7,6 +7,7 @@ $(document).ready(function() {
 	$('.scrolla-animate').scrolla();
 
 	// Portfolio
+	$('ul.pagination li').find('[data-page=1]').parent('li').addClass('active');
 	$.ajax({
 	    type: 'get',
 	    url: '/showPortfolio/1',
@@ -21,6 +22,56 @@ $(document).ready(function() {
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 	        alert("some error");
 	    }
+	});
+
+	$(document).on('click', 'ul.pagination a', function(e){
+		e.preventDefault();
+		var datapage = $(this).attr('data-page');
+		var current_page = parseInt($('input#current-page').val());
+		var max_page = parseInt($('input#max-page').val());
+		if( $.isNumeric( datapage ) ){
+			goto = datapage;
+		}
+		else{
+			if(datapage == 'next'){
+				if(current_page+1 > max_page){
+					return false;
+				}
+				else goto = current_page+1;
+			}
+			else if(datapage == 'back'){
+				if(current_page-1 < 1){
+					return false;
+				}
+				else goto = current_page-1;
+			}
+			else if(datapage == 'first'){
+				goto = 1;
+			}
+			else if(datapage == 'last'){
+				goto = max_page;
+			}
+		}
+		$.ajaxSetup({
+				headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+		});
+		$.ajax({
+				url: '/showPortfolio/'+ goto,
+				method: 'get',
+				dataType: 'json',
+				success: function(data){
+					$("section#portfolio div#append-portfolio").html("");
+					$('input#current-page').val(goto);
+					$('ul.pagination li').removeClass('active');
+					$('ul.pagination li').find('[data-page='+goto+']').parent('li').addClass('active');
+					$.each(data, function(index, item) {
+						var html = '<div class="col-md-4 col-sm-6 portfolio-item"><a href="/portfolioDetail/'+ item.id +'" id="portfolioDetailButton" class="portfolio-link"><div class="portfolio-hover"><div class="portfolio-hover-content"><i class="fa fa-search-plus fa-3x"></i></div></div><img src="img/portfolio/'+ item.smallpic +'" class="img-responsive" alt=""></a><div class="portfolio-caption"><h4><b>'+ item.name +'</b></h4><p class="text-muted">Website Design</p></div></div>';
+						$('section#portfolio div#append-portfolio').append(html);
+					});
+				}
+		});
 	});
 
 	$(document).on('click','a#portfolioDetailButton', function(e){
@@ -38,7 +89,7 @@ $(document).ready(function() {
 							$('#PortfolioModal').modal('show');
 							$('#PortfolioModal span#name').html(result.name);
 							$('#PortfolioModal span#client').html(result.client);
-							$('#PortfolioModal span#link').html(result.link);
+							$('#PortfolioModal a#link').attr('href', result.link);
 							$('#PortfolioModal img#show-fullpic').attr('src','/img/portfolio/' + result.fullpic);
 							$('#PortfolioModal span#date').html(result.updated_at);
 							console.log(result);
