@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         /* Queue Page */
         Route::get('queue', 'Admincp\QueueController@index')->name('queue');
+        Route::get('sessionFetch/{number}', 'Admincp\QueueController@sessionFetch');
         Route::get('queue/plus/{month}/{year}', 'Admincp\QueueController@plus')->name('queuePlus');
         Route::get('queue/minus/{month}/{year}', 'Admincp\QueueController@minus')->name('queueMinus');
     });

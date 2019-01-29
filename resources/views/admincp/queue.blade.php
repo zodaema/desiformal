@@ -20,6 +20,15 @@
         </div>
     </header>
 
+    @php
+        session()->regenerate();
+        if(!Session::has('fetch')){
+            $fetch = '6';
+        }
+        else{
+            $fetch = Session::get('fetch');
+        }
+    @endphp
 
     <section class="panel">
         <header class="panel-heading">
@@ -27,18 +36,18 @@
         </header>
         <div class="panel-body">
             <div class="col-lg-3">
-                <form action="queue.php" method="get" class="form-inline">
+                <form id="fetchForm" method="post" class="form-inline">
                   <div class="form-group">
                     <label>จำนวนเดือน : </label>
                     <div class="input-group">
-                      <input name="fetch" type="number" min="1" max="20" class="form-control" value="6">
+                      <input name="fetch" type="number" min="1" max="20" class="form-control" value="{{$fetch}}">
                     </div>
                     <button type="submit" class="btn">แสดง</button>
                   </div>
                 </form>
             </div>
             <div id="showQueue" class="col-lg-9">
-                @for ($i=0; $i < 6; $i++)
+                @for ($i=0; $i < $fetch; $i++)
                     @php
                         $month = date('m',strtotime("+$i months"));
                         $year = date('Y',strtotime("+$i months"));
@@ -76,7 +85,9 @@
                     url: $(this).attr('href'),
                     method: 'get',
                     success: function(result){
-                        $('div#showQueue').load('# div#showQueue');
+                        $.get("#", function(data) {
+                            $("div#showQueue").replaceWith($(data).find("div#showQueue"));
+                        });
                         console.log(result.message);
                     }
                 });
@@ -93,7 +104,28 @@
                     url: $(this).attr('href'),
                     method: 'get',
                     success: function(result){
-                        $('div#showQueue').load('# div#showQueue');
+                        $.get("#", function(data) {
+                            $("div#showQueue").replaceWith($(data).find("div#showQueue"));
+                        });
+                        console.log(result.message);
+                    }
+                });
+            });
+
+            $(document).on('submit','form#fetchForm', function(e){
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: 'sessionFetch/' + $('input[name=fetch]').val(),
+                    method: 'get',
+                    success: function(result){
+                        $.get("#", function(data) {
+                            $("div#showQueue").replaceWith($(data).find("div#showQueue"));
+                        });
                         console.log(result.message);
                     }
                 });

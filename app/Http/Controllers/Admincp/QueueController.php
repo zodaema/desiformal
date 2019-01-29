@@ -16,6 +16,13 @@ class QueueController extends Controller
         return view('admincp.queue')->with('month_name', $month_name);
     }
 
+    public static function sessionFetch($number){
+        session(['fetch' => $number]);
+        return response()->json([
+            "message" => "Success"
+        ]);
+    }
+
     public static function requestQueue($month,$year)
     {
         $queue = Queue::where('month', $month)->where('year', $year)->first();
