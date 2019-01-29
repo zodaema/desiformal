@@ -1,0 +1,75 @@
+form#order_detail > div.panel-body {
+	border-radius: 0;
+}
+
+.jconfirm.hario .jconfirm-bg {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.jconfirm.hario .jconfirm-box {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+	background: white;
+	border-radius: 5px;
+	color: #003755;
+	padding: 1em;
+	text-align: center;
+}
+.jconfirm.hario .jconfirm-box .buttons {
+	text-align: center;
+}
+.jconfirm.hario .jconfirm-box .buttons button {
+	border: none;
+	background-image: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: none;
+	-webkit-transition: background .1s;
+	transition: background .1s;
+	color: white;
+	width: 60px;
+}
+.jconfirm.hario .jconfirm-box .buttons button.btn-default {
+	box-shadow: none;
+	color: #fff;
+	background: none;
+}
+.jconfirm.hario .jconfirm-box .buttons button.btn-default:hover {
+	background: #666;;
+}
+
+tr.order_item {
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+
+tr.order_item:hover{
+	background-color: #f0f6f8 !important;
+	color: #7dafc1;
+	cursor: pointer;
+}
+
+tr.order_selected {
+	background-color: #0088cc !important;
+	color: white;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+
+tr.order_selected:hover {
+	background-color: #0072a8 !important;
+	color: white;
+}
+
+tr.order_selected td{
+	border-color: #00a3f0 !important;
+}
+
+tr.order_selected a{
+	color: white;
+}

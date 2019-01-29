@@ -24,12 +24,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
         /* Portfolio Page */
-        Route::get('', 'Admincp\PortfolioController@index')->name('portfolio');
+        Route::get('', function () {
+            return redirect('admincp/portfolio');
+        });
+        Route::get('portfolio', 'Admincp\PortfolioController@index')->name('portfolio');
         Route::get('portfolio/showTable', 'Admincp\PortfolioController@showTable')->name('portfolio.showTable');
         Route::get('portfolio/destroy/{id}', 'Admincp\PortfolioController@destroy')->name('portfolio.destroy');
         Route::post('portfolio/add/', 'Admincp\PortfolioController@add')->name('portfolio.add');
         Route::put('portfolio/edit/{id}', 'Admincp\PortfolioController@edit')->name('portfolio.edit');
         Route::get('portfolio/getData/{id}', 'Admincp\PortfolioController@getData')->name('portfolio.getData');
+
+        /* Queue Page */
+        Route::get('queue', 'Admincp\QueueController@index')->name('queue');
     });
 });
 

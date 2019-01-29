@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,4 +37,37 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /** Custom Default */
+    public function showLoginForm()
+    {
+        return view('admincp.auth.login');
+    }
+
+    public function showLinkRequestForm()
+    {
+        return view('admincp.auth.passwords.email');
+    }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('admincp.auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('admincp.auth.register');
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/admincp');
+    }
+
 }

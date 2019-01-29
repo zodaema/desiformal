@@ -13,7 +13,7 @@ class PortfolioController extends Controller
 {
     //
     public function index(){
-        return view('admincp.index');
+        return view('admincp.portfolio');
     }
 
     public function showTable(){
@@ -23,7 +23,9 @@ class PortfolioController extends Controller
 
     public function destroy($id) {
         Portfolio::destroy($id);
-        return back();
+        return response()->json([
+            "message" => "Success"
+        ]);
     }
 
     /**
@@ -56,7 +58,9 @@ class PortfolioController extends Controller
             $portfolio->fullpic = 'nopic.jpg';
         }
         $portfolio->save();
-        return redirect()->action('Admincp\PortfolioController@index');
+        return response()->json([
+            "message" => "Success"
+        ]);
     }
 
     public function edit(PortfolioRequest $request, $id)
