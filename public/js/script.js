@@ -5,6 +5,29 @@ var parallax = new Parallax(scene);
 // Scrolla
 $('.scrolla-animate').scrolla();
 
+$(document).on('click','a#portfolioDetailButton', function(e){
+		e.preventDefault();
+		$.ajaxSetup({
+				headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+		});
+		$.ajax({
+				url: $(this).attr("href"),
+				method: 'get',
+				dataType: 'json',
+				success: function(result){
+						$('#PortfolioModal').modal('show');
+						$('#PortfolioModal span#name').html(result.name);
+						$('#PortfolioModal span#client').html(result.client);
+						$('#PortfolioModal span#link').html(result.link);
+						$('#PortfolioModal img#show-fullpic').attr('src','/img/portfolio/' + result.fullpic);
+						$('#PortfolioModal span#date').html(result.updated_at);
+						console.log(result);
+				}
+		});
+});
+
 // Portfolio
 $(document).ready(function() {
 	$('#portfolio-show').load('admincp-secure/fetch_pages.php'); //load initial records

@@ -19,6 +19,9 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
+Route::get('/showPortfolio/{page}', 'PortfolioController@showPortfolio');
+Route::get('/portfolioDetail/{id}', 'PortfolioController@portfolioDetail')->name('portfolio.detail');
+
 Route::prefix('admincp')->group(function(){
     Auth::routes(['register' => false]);
 });

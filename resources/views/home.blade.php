@@ -120,17 +120,18 @@
 
         <!-- Portfolio -->
         <section id="portfolio" class="portfolio bg-light-gray">
-                <div class="container">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2>ตัวอย่างผลงาน</h2>
                         <h3>ตัวอย่างผลงานการออกแบบเว็บไซต์ที่ผ่านมา</h3>
                     </div>
                 </div>
+
                 <div class="row">
                   @php
                     use App\Http\Controllers\PortfolioController;
-                    $portfolios = PortfolioController::showPortfolio();
+                    $portfolios = PortfolioController::showPortfolio('1');
                   @endphp
 
                   @if(count($portfolios) == 0)
@@ -138,7 +139,7 @@
                   @else
                     @foreach ($portfolios as $portfolio)
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a href="#" class="portfolio-link" data-toggle="modal" data-target="#PortfolioModal">
+                        <a href="{{ route('portfolio.detail', ['id' => $portfolio->id]) }}" id="portfolioDetailButton" class="portfolio-link">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
@@ -152,10 +153,17 @@
                         </div>
                     </div>
                   @endforeach
-                @endif
                 </div>
-              <div align="center">
-
+                <div align="center">
+                  <ul class="pagination">
+                    <li class="first"><a href="#" data-page="1" title="First"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li><a href="#" data-page="'.$previous_link.'" title="Previous"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="#" data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>
+                    <li><a href="#" data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>
+                    <li class="last"><a href="#" data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>
+                  </ul>
+                </div>
+                @endif
               </div>
             </section>
 
@@ -171,12 +179,12 @@
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2">
                                 <div class="modal-body">
-                                    <h2>'.$row[name].'</h2>
-                                    <center><img class="img-responsive img-centered" src="'.$dirpic.''.$row[fullpic].'" alt=""></center>
+                                    <h2><span id='name'></span></h2>
+                                    <center><img class="img-responsive img-centered" id="show-fullpic" src="" alt=""></center>
                                     <ul class="list-inline">
-                                        <li>Date: '.$row[dates].'</li>
-                                        <li>Client: '.$row[client].'</li>
-                                        <li>Link : <a href="'.$row[link].'" target="_blank">'.$row[name].'</a></li>
+                                        <li>Date: <span id='date'></span></li>
+                                        <li>Client: <span id='client'></span></li>
+                                        <li>Link : <a href="'.$row[link].'" target="_blank"><span id='name'></span></a></li>
                                         <li>Category: Website Design</li>
                                     </ul>
                                     <button type="button" class="btn btn-primary btn-lg btn3d" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>

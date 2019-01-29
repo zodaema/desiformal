@@ -273,7 +273,6 @@
                 });
             });
 
-
             $(document).on('submit','#add_portfolio', function(e){
                 e.preventDefault();
                 var data = new FormData(this);
