@@ -1,50 +1,52 @@
-// Parallax
-var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);
-
-// Scrolla
-$('.scrolla-animate').scrolla();
-
-$(document).on('click','a#portfolioDetailButton', function(e){
-		e.preventDefault();
-		$.ajaxSetup({
-				headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-		});
-		$.ajax({
-				url: $(this).attr("href"),
-				method: 'get',
-				dataType: 'json',
-				success: function(result){
-						$('#PortfolioModal').modal('show');
-						$('#PortfolioModal span#name').html(result.name);
-						$('#PortfolioModal span#client').html(result.client);
-						$('#PortfolioModal span#link').html(result.link);
-						$('#PortfolioModal img#show-fullpic').attr('src','/img/portfolio/' + result.fullpic);
-						$('#PortfolioModal span#date').html(result.updated_at);
-						console.log(result);
-				}
-		});
-});
-
-// Portfolio
 $(document).ready(function() {
-	$('#portfolio-show').load('admincp-secure/fetch_pages.php'); //load initial records
+	// Parallax
+	var scene = document.getElementById('scene');
+	var parallax = new Parallax(scene);
 
-	//executes code below when user click on pagination links
-	$('#portfolio-show').on('click', '.pagination a', function (e){
-		e.preventDefault();
-		$(".loading-div").show(); //show loading element
-		var page = $(this).attr("data-page"); //get page number from link
-		$("#portfolio-show").load("admincp-secure/fetch_pages.php",{"page":page}, function(){ //get content from PHP page
-			$(".loading-div").hide(); //once done, hide loading element
-            $("html, body").animate({ scrollTop: ($('#portfolio').offset().top - 50) }, 600);
-		});
+	// Scrolla
+	$('.scrolla-animate').scrolla();
+
+	// Portfolio
+	$.ajax({
+	    type: 'get',
+	    url: '/showPortfolio/1',
+	    dataType: 'json', // ** ensure you add this line **
+	    success: function(data) {
+	        $.each(data, function(index, item) {
+						var html = '<div class="col-md-4 col-sm-6 portfolio-item"><a href="/portfolioDetail/'+ item.id +'" id="portfolioDetailButton" class="portfolio-link"><div class="portfolio-hover"><div class="portfolio-hover-content"><i class="fa fa-search-plus fa-3x"></i></div></div><img src="img/portfolio/'+ item.smallpic +'" class="img-responsive" alt=""></a><div class="portfolio-caption"><h4><b>'+ item.name +'</b></h4><p class="text-muted">Website Design</p></div></div>';
+						$('section#portfolio div#append-portfolio').append(html);
+	            console.log(data);
+	        });
+	    },
+	    error: function(XMLHttpRequest, textStatus, errorThrown) {
+	        alert("some error");
+	    }
 	});
-});
 
-// Navigation
+	$(document).on('click','a#portfolioDetailButton', function(e){
+			e.preventDefault();
+			$.ajaxSetup({
+					headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+			});
+			$.ajax({
+					url: $(this).attr("href"),
+					method: 'get',
+					dataType: 'json',
+					success: function(result){
+							$('#PortfolioModal').modal('show');
+							$('#PortfolioModal span#name').html(result.name);
+							$('#PortfolioModal span#client').html(result.client);
+							$('#PortfolioModal span#link').html(result.link);
+							$('#PortfolioModal img#show-fullpic').attr('src','/img/portfolio/' + result.fullpic);
+							$('#PortfolioModal span#date').html(result.updated_at);
+							console.log(result);
+					}
+			});
+	});
+
+	// Navigation
     $('.navbar-desiformal a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
@@ -62,8 +64,7 @@ $(document).ready(function() {
         $('.navbar-toggle:visible').click();
     });
 
-// Back to top
-jQuery(document).ready(function() {
+		// Back to top
     var offset = 250;
     var duration = 300;
     jQuery(window).scroll(function() {
@@ -80,7 +81,7 @@ jQuery(document).ready(function() {
         jQuery('html, body').animate({scrollTop: 0}, duration);
         return false;
     });
-});
 
-// Facebook Like box
-(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v2.4&appId=328021167405724";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+	// Facebook Like box
+	(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v2.4&appId=328021167405724";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+});
