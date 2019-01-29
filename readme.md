@@ -24,3 +24,5 @@ Mr.Nattaphon Suparsri
 8. พิมพ์ php artisan db:seed
 9. พิมพ์ php artisan serve
 10. เข้าเว็บ http://localhost:8000
+11. เข้า AdminCP เพื่อจัดการ http://localhost:8000/admincp
+12. Email: admin@desiformal.com , Password: 123456
