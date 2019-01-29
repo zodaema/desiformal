@@ -22,7 +22,6 @@ Route::get('/home', function () {
 Route::get('/showPortfolio/{page}', 'PortfolioController@showPortfolio');
 Route::get('/portfolioDetail/{id}', 'PortfolioController@portfolioDetail');
 Route::get('/totalPage', 'PortfolioController@totalPage')->name('totalPage');
-
 Route::get('/searchQueue/{month}/{year}', 'QueueController@searchQueue')->name('searchQueue');
 
 Route::prefix('admincp')->group(function(){
@@ -46,5 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         /* Queue Page */
         Route::get('queue', 'Admincp\QueueController@index')->name('queue');
+        Route::get('queue/plus/{month}/{year}', 'Admincp\QueueController@plus')->name('queuePlus');
+        Route::get('queue/minus/{month}/{year}', 'Admincp\QueueController@minus')->name('queueMinus');
     });
 });

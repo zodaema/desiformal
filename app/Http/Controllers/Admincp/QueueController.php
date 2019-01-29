@@ -21,4 +21,40 @@ class QueueController extends Controller
         $queue = Queue::where('month', $month)->where('year', $year)->first();
         return $queue;
     }
+
+    public function plus($month,$year){
+        $queue = Queue::where('month', $month)->where('year', $year)->first();
+        if(empty($queue)){
+            $queue = new Queue();
+            $queue->month = $month;
+            $queue->year = $year;
+            $queue->queue = 1;
+            $queue->save();
+        }
+        else {
+            if ($queue->queue == 1) {
+                $queue->queue = 2;
+                $queue->save();
+            }
+        }
+        return response()->json([
+            "message" => "Success"
+        ]);
+    }
+
+    public function minus($month,$year){
+        $queue = Queue::where('month', $month)->where('year', $year)->first();
+        if(isset($queue)){
+            if ($queue->queue == 2) {
+                $queue->queue = 1;
+                $queue->save();
+            }
+            elseif($queue->queue == 1){
+                $queue->delete();
+            }
+        }
+        return response()->json([
+            "message" => "Success"
+        ]);
+    }
 }
