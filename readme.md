@@ -18,7 +18,7 @@ Mr.Nattaphon Suparsri
 2. พิมพ์ composer install
 3. สร้างฐานข้อมูลชื่อ lv_desiformal
 4. เข้าโฟลเดอร์โปรเจค สร้างไฟล์ .env (ก๊อปไฟล์ .env.example) ถ้าใครสร้างไม่ได้ให้สร้างบน Editor, IDE
-5. ตั้งค่าฐานข้อมูลในไฟล์ .env ในตัวแปรที่มี คือ DB_ นำหน้า
+5. ตั้งค่าฐานข้อมูลในไฟล์ .env ในตัวแปรที่มี คือ DB_ นำหน้า ให้ใส่ DB_DATABASE=lv_desiformal และแก้ไขในส่วน Username และ password
 6. พิมพ์ php artisan key:generate
 7. พิมพ์ php artisan migrate
 8. พิมพ์ php artisan db:seed
