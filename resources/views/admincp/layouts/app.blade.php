@@ -20,10 +20,11 @@
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/bootstrap/css/bootstrap.css') }}" />
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/dropzone/basic.css') }}" />
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/dropzone/dropzone.css') }}">
-
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/font-awesome/css/font-awesome.css') }}" />
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/magnific-popup/magnific-popup.css') }}" />
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css') }}" />
+        <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/craftpip-jquery-confirm/css/jquery-confirm.css') }}" />
+        <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/ladda-bootstrap/dist/ladda.min.css') }}" />
 
         <!-- Specific Page Vendor CSS -->
         <link rel="stylesheet" href="{{ asset('admincp_plugin/assets/vendor/select2/css/select2.css') }}" />
@@ -50,6 +51,8 @@
         <script src="{{ asset('admincp_plugin/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
         <script src="{{ asset('admincp_plugin/assets/vendor/jquery-placeholder/jquery-placeholder.js') }}"></script>
+        <script src="{{ asset('admincp_plugin/assets/vendor/craftpip-jquery-confirm/js/jquery-confirm.js') }}"></script>
+        <script src="{{ asset('admincp_plugin/assets/vendor/ladda-bootstrap/dist/ladda.min.js') }}"></script>
 
         <!-- Specific Page Vendor -->
         <script src="{{ asset('admincp_plugin/assets/vendor/select2/js/select2.js') }}"></script>
@@ -178,24 +181,24 @@
                                             <span>จัดการคิวงาน</span>
                                         </a>
                                     </li>
-                                    <li class="nav-parent">
-                                        <a>
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span>จัดการสมาชิก</span>
-                                        </a>
-                                        <ul class="nav nav-children">
-                                            <li>
-                                                <a href="?p=member">
-                                                    รายชื่อสมาชิก
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="?p=member&s=group">
-                                                    จัดการกลุ่ม
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    {{--<li class="nav-parent">--}}
+                                        {{--<a>--}}
+                                            {{--<i class="fa fa-user" aria-hidden="true"></i>--}}
+                                            {{--<span>จัดการสมาชิก</span>--}}
+                                        {{--</a>--}}
+                                        {{--<ul class="nav nav-children">--}}
+                                            {{--<li>--}}
+                                                {{--<a href="?p=member">--}}
+                                                    {{--รายชื่อสมาชิก--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<a href="?p=member&s=group">--}}
+                                                    {{--จัดการกลุ่ม--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
                                 </ul>
                             </nav>
 

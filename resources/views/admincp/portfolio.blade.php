@@ -134,7 +134,7 @@
                 </div>
                 <form id="edit_portfolio" enctype="multipart/form-data" method="POST">
                     {{ method_field('PUT') }}
-                    @csrf
+                    {!! csrf_field() !!}
                     <input type="hidden" name="id" class="form-control">
 
                     <div class="modal-body">
@@ -291,6 +291,11 @@
                     dataType: 'json',
                     success: function(result){
                         $('#AddPortfolio').modal('hide');
+                        new PNotify({
+                            title: 'Success!',
+                            text: 'เพิ่มข้อมูลแล้ว.',
+                            type: 'success'
+                        });
                         datatableInit.ajax.reload(null,false);
                         console.log(result.message);
                     }
@@ -300,23 +305,38 @@
             $(document).on('submit','#edit_portfolio', function(e){
                 e.preventDefault();
                 var data = new FormData(this);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: '{{ url("/") }}/admincp/portfolio/edit/'+ $('#EditPortfolio input[name=id]').val(),
-                    method: 'put',
-                    cache:false,
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    dataType: 'json',
-                    success: function(result){
-                        $('#EditPortfolio').modal('hide');
-                        datatableInit.ajax.reload(null,false);
-                        console.log(result.message);
+                var jc = $.confirm({
+                    theme: 'modern',
+                    keyboardEnabled: true,
+                    title: 'ยืนยันอีกครั้ง!',
+                    content: 'คุณต้องการทำรายการ จริงๆใช่ไหม?',
+                    buttons: {
+                        confirm: function () {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+                            $.ajax({
+                                url: '{{ url("/") }}/admincp/portfolio/edit/' + $('#EditPortfolio input[name=id]').val(),
+                                method: 'post',
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                data: data,
+                                dataType: 'json',
+                                success: function (result) {
+                                    $('#EditPortfolio').modal('hide');
+                                    new PNotify({
+                                        title: 'Success!',
+                                        text: 'แก้ไขข้อมูลแล้ว.',
+                                        type: 'success'
+                                    });
+                                    datatableInit.ajax.reload(null, false);
+                                    console.log(result.message);
+                                }
+                            });
+                        }
                     }
                 });
             });
@@ -324,17 +344,32 @@
             $(document).on('click','#destroyPortfolioButton', function(e){
                 e.preventDefault();
                 var data = $(this).attr('data-id');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: '{{ url("/") }}/admincp/portfolio/destroy/'+ data,
-                    method: 'get',
-                    success: function(result){
-                        datatableInit.ajax.reload(null,false);
-                        console.log(result.message);
+                var jc = $.confirm({
+                    theme: 'modern',
+                    keyboardEnabled: true,
+                    title: 'ยืนยันอีกครั้ง!',
+                    content: 'คุณต้องการทำรายการ จริงๆใช่ไหม?',
+                    buttons: {
+                        confirm: function () {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+                            $.ajax({
+                                url: '{{ url("/") }}/admincp/portfolio/destroy/' + data,
+                                method: 'get',
+                                success: function (result) {
+                                    new PNotify({
+                                        title: 'Success!',
+                                        text: 'ลบข้อมูลแล้ว.',
+                                        type: 'success'
+                                    });
+                                    datatableInit.ajax.reload(null, false);
+                                    console.log(result.message);
+                                }
+                            });
+                        }
                     }
                 });
             });

@@ -88,6 +88,11 @@
                         $.get("#", function(data) {
                             $("div#showQueue").replaceWith($(data).find("div#showQueue"));
                         });
+                        new PNotify({
+                            title: 'Success!',
+                            text: 'เพิ่มคิวงานแล้ว.',
+                            type: 'success'
+                        });
                         console.log(result.message);
                     }
                 });
@@ -104,6 +109,11 @@
                     url: $(this).attr('href'),
                     method: 'get',
                     success: function(result){
+                        new PNotify({
+                            title: 'Success!',
+                            text: 'ลบคิวงานแล้ว.',
+                            type: 'success'
+                        });
                         $.get("#", function(data) {
                             $("div#showQueue").replaceWith($(data).find("div#showQueue"));
                         });
