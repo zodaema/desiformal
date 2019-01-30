@@ -66,6 +66,7 @@ $(document).ready(function() {
 					$('input#current-page').val(goto);
 					$('ul.pagination li').removeClass('active');
 					$('ul.pagination li').find('[data-page='+goto+']').parent('li').addClass('active');
+                    $("html, body").animate({ scrollTop: ($('#portfolio').offset().top - 50) }, 600);
 					$.each(data, function(index, item) {
 						var html = '<div class="col-md-4 col-sm-6 portfolio-item"><a href="/portfolioDetail/'+ item.id +'" id="portfolioDetailButton" class="portfolio-link"><div class="portfolio-hover"><div class="portfolio-hover-content"><i class="fa fa-search-plus fa-3x"></i></div></div><img src="img/portfolio/'+ item.smallpic +'" class="img-responsive" alt=""></a><div class="portfolio-caption"><h4><b>'+ item.name +'</b></h4><p class="text-muted">Website Design</p></div></div>';
 						$('section#portfolio div#append-portfolio').append(html);
