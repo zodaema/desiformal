@@ -49,7 +49,7 @@
             <div id="showQueue" class="col-lg-9">
                 @for ($i=0; $i < $fetch; $i++)
                     @php
-                        $month = date('m',strtotime("+$i months"));
+                        $month = date('m',strtotime("first day of +$i months"));
                         $year = date('Y',strtotime("+$i months"));
                         $queue = App\Http\Controllers\Admincp\QueueController::requestQueue($month,$year);
                         $percent = $queue['queue']*50;
