@@ -30,6 +30,9 @@ Route::prefix('admincp')->group(function(){
 
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('admincp')->group(function () {
+        Route::get('login', function () {
+            return redirect('/admincp');
+        });
         Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
         /* Portfolio Page */
