@@ -114,8 +114,8 @@
                             <h4>ตารางคิวงาน</h4>
                             @for($i=0;$i<8;$i++)
                             @php
-                                $month = date('m',strtotime("$i month"));
-                                $year = date('Y',strtotime("$i month"));
+                                $month = date('m',strtotime("first day of $i month"));
+                                $year = date('Y',strtotime("first day of $i month"));
                                 $porsor = $year+543;
                                 $month_name = array('01'=>'มกราคม','02'=>'กุมภาพันธ์','03'=>'มีนาคม','04'=>'เมษายน','05'=>'พฤษภาคม','06'=>'มิถุนายน','07'=>'กรกฎาคม','08'=>'สิงหาคม','09'=>'กันยายน','10'=>'ตุลาคม','11'=>'พฤศจิกายน','12'=>'ธันวาคม');
                                 $queue = App\Http\Controllers\QueueController::searchQueue($month,$year);
